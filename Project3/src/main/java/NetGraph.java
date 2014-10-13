@@ -55,17 +55,20 @@ public class NetGraph
         System.out.println("Enter a command, or type 'H' to display instructions.");
         Scanner s = new Scanner(System.in);
         String input = s.nextLine();
-        if (input.equals("R")==true) report();
-        if (input.equals("M")==true) prims();
-        //if (input.equals("T")==true) G.testSpace();
-        if (input.equals("V")==true) G.view();
-        if (input.charAt(0)=='S') shortestPath(getInts(input));
-        if (input.charAt(0)=='P') distinctPaths(getInts(input));
-        if (input.charAt(0)=='H') help();
-        if (input.charAt(0)=='D') down(getInts(input));
-        if (input.charAt(0)=='U') up(getInts(input));
-        if (input.charAt(0)=='C') change(getInts(input));
-        if (input.equals("Q")==true) exit(0);
+
+        if (input.length()>0) {
+            if (input.equals("R")==true) report();
+            if (input.equals("M")==true) prims();
+            //if (input.equals("T")==true) G.testSpace();
+            if (input.equals("V")==true) G.view();
+            if (input.charAt(0)=='S') shortestPath(getInts(input));
+            if (input.charAt(0)=='P') distinctPaths(getInts(input));
+            if (input.charAt(0)=='H') help();
+            if (input.charAt(0)=='D') down(getInts(input));
+            if (input.charAt(0)=='U') up(getInts(input));
+            if (input.charAt(0)=='C') change(getInts(input));
+            if (input.equals("Q")==true) exit(0);
+        }
         prompt();
     }
     static void report() //display the current active network (all active nodes and edges, including edge weights) show the status of the network (connected or not); show the connected components of the network
