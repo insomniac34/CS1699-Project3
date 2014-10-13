@@ -37,7 +37,7 @@ public class AdjacencyList implements UndirectedGraph
     //-------------------------------------------------------------------------------------------------------------
     // ~~AdjacencyList(int v)~~
     //	-constructor that takes a number of vertices as an argument.
-    //	-NOTE that this is NOT the number of ACTUAL vertices in this graph, but the maximum number it can hold; that is,
+    //	-NOTE that this is NOT the number of ACTUAL vertices in this graph, but the maximum number it can hold; that is, 
     //   -the length of the <list> array of Linked Lists.
     //-------------------------------------------------------------------------------------------------------------
     public AdjacencyList(int v)
@@ -131,7 +131,7 @@ public class AdjacencyList implements UndirectedGraph
     //-------------------------------------------------------------------------------------------------------------
     // ~~insert()~~
     //	-this void function handles the insertion of new edges into the graph
-    //
+    //	
     //
     //-------------------------------------------------------------------------------------------------------------
     public void insert(Edge newEdge)
@@ -160,7 +160,7 @@ public class AdjacencyList implements UndirectedGraph
     //-------------------------------------------------------------------------------------------------------------
     // ~~report()~~
     //	-this method displays information about each individual node currently active in the network.
-    //
+    //	
     //
     //-------------------------------------------------------------------------------------------------------------
     public void report() //display detailed information on each Node
@@ -241,7 +241,7 @@ public class AdjacencyList implements UndirectedGraph
     //-------------------------------------------------------------------------------------------------------------
     // ~~prims()~~
     //	-this method calculates the Minimum Spanning Tree of the graph via my implementation of Prim's Algorithm.
-    //
+    //	
     //
     //-------------------------------------------------------------------------------------------------------------
     public void prims()
@@ -249,13 +249,13 @@ public class AdjacencyList implements UndirectedGraph
         int MSTsize = 0;
 
         AdjacencyList MST = new AdjacencyList(vertexCount); //Adjacency List has <vertexCount> possible vertices.
-        int[] MSTVertices = new int[vertexCount];
-        int[] GVertices = new int[vertexCount];
+        int[] mstVertices = new int[vertexCount];
+        int[] gVertices = new int[vertexCount];
 
         for(int i = 0; i <= vertexCount-1; i++)
         {
-            GVertices[i] = 1; //initialize G's vertices as all utilized.
-            MSTVertices[i] = 0; //initialize MST as all uninserted.
+            gVertices[i] = 1; //initialize G's vertices as all utilized.
+            mstVertices[i] = 0; //initialize MST as all uninserted.
         }
         int curLocation = 0;
         for (int i = 0; i <= this.list.length-1; i++) //for loop iterates over all vertices until it finds a list that is not empty. Our arbitrary starting location for the algorithm is the head of this list.
@@ -268,25 +268,25 @@ public class AdjacencyList implements UndirectedGraph
                 break;
             }
         }
-        GVertices[curLocation] = 0; //remove from GVertices the initial starting location.
-        MSTVertices[curLocation] = 1; //and add it to the MST.
+        gVertices[curLocation] = 0; //remove from gVertices the initial starting location.
+        mstVertices[curLocation] = 1; //and add it to the MST.
         MSTsize = 1;
         while(true)
         {
-            Edge cheapestEdge = new Edge(this.findMinimumEdge(GVertices, MSTVertices)); //find the lowest-weighted edge connecting a vertex in the tree with a vertex NOT in the tree.
+            Edge cheapestEdge = new Edge(this.findMinimumEdge(gVertices, mstVertices)); //find the lowest-weighted edge connecting a vertex in the tree with a vertex NOT in the tree.
 
             if (cheapestEdge.getWeight() == INFINITY)
             {
                 //System.err.println("FATAL ERROR: Edge of Length INFINITY has been added to graph! Contact your local physicist if the problem persists.");
                 break;
             }
-            if (MSTVertices[cheapestEdge.getVertexA()]==0) MSTsize++; //if vertexA has yet to be added, increment total size by 1.
-            if (MSTVertices[cheapestEdge.getVertexB()]==0) MSTsize++; //if vertexB has yet to be added, increment total size by 1.
+            if (mstVertices[cheapestEdge.getVertexA()]==0) MSTsize++; //if vertexA has yet to be added, increment total size by 1.
+            if (mstVertices[cheapestEdge.getVertexB()]==0) MSTsize++; //if vertexB has yet to be added, increment total size by 1.
 
-            GVertices[cheapestEdge.getVertexA()] = 0;
-            MSTVertices[cheapestEdge.getVertexA()] = 1;
-            GVertices[cheapestEdge.getVertexB()] = 0;
-            MSTVertices[cheapestEdge.getVertexB()] = 1;
+            gVertices[cheapestEdge.getVertexA()] = 0;
+            mstVertices[cheapestEdge.getVertexA()] = 1;
+            gVertices[cheapestEdge.getVertexB()] = 0;
+            mstVertices[cheapestEdge.getVertexB()] = 1;
 
             MST.insert(cheapestEdge);
             if (MSTsize==this.curSize) break; //ending condition.
@@ -492,7 +492,7 @@ public class AdjacencyList implements UndirectedGraph
 
     //-------------------------------------------------------------------------------------------------------------
     // ~~disableNode()~~
-    //	-This function takes in a single int param that represents the vertex to be brought down.
+    //	-This function takes in a single int param that represents the vertex to be brought down. 
     //	-Should the vertex not exist, nothing is done.
     //
     //
@@ -521,7 +521,7 @@ public class AdjacencyList implements UndirectedGraph
     //-------------------------------------------------------------------------------------------------------------
     // ~~restoreNode()~~
     //   restores all edges connected to int node in the graph
-    //	-This function takes in a single int param that represents the vertex to be repaired.
+    //	-This function takes in a single int param that represents the vertex to be repaired. 
     //	-Should the vertex not exist, nothing is done.
     //
     //
@@ -560,7 +560,7 @@ public class AdjacencyList implements UndirectedGraph
     // ~~modifyWeight()~~
     //	-this void function iterates through the Adjacency List in search of the target edge, and modifies/deletes/creates the edge as per the spec sheet.
     //	-it takes in two integers v0 and v1, as well as a third int w. If v0 and v1 represent the vertices of an already-created edge, w replaces that edge's current value. If w is negative, however, that edge is deleted.
-    //	-Should the edge NOT exist, it is created. If the edge has a negative value, nothing is done.
+    //	-Should the edge NOT exist, it is created. If the edge has a negative value, nothing is done. 
     //	-NOTE: Edges cannot be deleted, inserted or otherwise modified should either node be down.
     //
     //-------------------------------------------------------------------------------------------------------------
